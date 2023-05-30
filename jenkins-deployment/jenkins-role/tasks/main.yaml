@@ -1,0 +1,59 @@
+- name: Deploy namespace
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-ns.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Deploy storageClass for volume
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-storageclass.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Deploy Jenkins volume
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-volume.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Deploy Jenkins volumeClaim
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-volumeclaim.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Deploy Jenkins clusterrole
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-clusterrole.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Deploy serviceAccount
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-sa.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Deploy clusterRoleBinding
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-clusterrolebinding.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Jenkins deployment
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-deployment.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Jenkins service
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-service.yaml') | from_yaml }}"
+    validate_certs: no
+
+- name: Jenkins tunneling svc
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'jenkins-tunnel-svc.yaml') | from_yaml }}"
+    validate_certs: no

@@ -1,0 +1,4 @@
+- hosts: eks
+  name: Deploy Jenkins
+  roles:
+    - jenkins-role
